@@ -7,7 +7,7 @@ import {Observable, of} from 'rxjs';
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
-  private BASE_URL:string='http://86.107.198.215:80/api/v1/'
+  private BASE_URL:string='https://86.107.198.215:80/api/v1/'
 
   addCategory(name: string): Observable<any> {
     return this.http.post(
