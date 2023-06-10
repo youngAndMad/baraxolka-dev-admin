@@ -17,11 +17,10 @@ export class ApiService {
   }
 
   getAllByDetails(floor: number, bazar: string): Observable<any> {
-    console.log('current token' , localStorage.getItem('token'))
     return this.http.get(
       `${this.BASE_URL}market/boutique-address/?bazar=Akbulak&floor=1&limit=214`
       ,{headers:{
-        'Authorization':`Token ${localStorage.getItem('token')}`
+        'Authorization':`Token 77cef3e345363121c43e2ed5374c3dae6b03a65e`
         }}
     );
   }
