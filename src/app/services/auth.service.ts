@@ -10,7 +10,6 @@ export class AuthService {
   constructor(private http:HttpClient) { }
 
   startTokenRefreshTimer(): void {
-    console.log('starting')
     this.refreshToken();
     const refreshInterval = 15 * 60 * 1000;
     interval(refreshInterval).subscribe(() => {
@@ -30,4 +29,5 @@ export class AuthService {
     console.log('new token' , token)
     localStorage.setItem('token' , `${token}`);
   }
+
 }
