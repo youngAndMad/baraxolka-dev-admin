@@ -13,5 +13,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.startTokenRefreshTimer();
+    localStorage.setItem('token' , '4ac18a6ea77aeb0afe2c8a50524183e68fb60f2e')
   }
 }
