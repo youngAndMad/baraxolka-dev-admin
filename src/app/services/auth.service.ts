@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {interval, Observable} from 'rxjs';
+import {interval} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
