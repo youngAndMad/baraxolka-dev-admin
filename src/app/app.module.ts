@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { EditBoutiqueComponent } from './components/edit-boutique/edit-boutique.
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {HttpClientInterceptor} from "./utils/http-client.interceptor";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,12 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     ReactiveFormsModule,
     NgMultiSelectDropDownModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS , useClass:HttpClientInterceptor , multi:true
+    }
+
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

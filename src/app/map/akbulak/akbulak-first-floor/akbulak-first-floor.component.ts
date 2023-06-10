@@ -112,6 +112,7 @@ export class AkbulakFirstFloorComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getAllByDetails(1, 'Akbulak').subscribe((response) => {
       this.addressList = response.results;
+      console.log(response)
     });
   }
 
