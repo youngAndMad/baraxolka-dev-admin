@@ -11,7 +11,6 @@ export class AuthService {
   }
 
   startTokenRefreshTimer(): void {
-    console.log('startTokenRefreshTimer')
     this.refreshToken();
     const refreshInterval = 15 * 60 * 1000;
     interval(refreshInterval).subscribe(() => {
@@ -22,6 +21,7 @@ export class AuthService {
   private refreshToken() {
     this.http.post<any>('http://86.107.198.215:80/api/v1/auth-token/', {password: '87751112233', phone: '87751112233'})
       .subscribe(response => {
+        console.log(response)
         this.updateToken(response.token)
       })
   }
