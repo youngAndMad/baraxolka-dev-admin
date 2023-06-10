@@ -1,0 +1,75 @@
+.parent{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  #b_name{
+    text-align: center;
+    font-size: 30px;
+  }
+
+  form{
+    background-color: #fff;
+    padding: 20px;
+  }
+
+  #btns{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-evenly
+  }
+
+  #delete{
+    margin-left: 20%;
+    border-radius: 25%;
+    background-color:red;
+    color: #fff;
+    width: 120px;
+
+  }
+
+  #close{
+    border-radius: 20%;
+    color: white;
+    height: 40px;
+    width: 120px;
+    background-color:rgb(5, 32, 152);
+  }
+
+  input{
+    width: 100%;
+  }
+
+  #edit{
+    margin-left: 30%;
+    border-radius: 20%;
+    color: white;
+    height: 40px;
+    width: 120px;
+    background-color: green;
+  }
+
+  .errorMessage{
+    color:red
+  }
+
+  #addCategory{
+    color:white;
+    margin-top: 15px;
+    margin-left: 10%;
+    width: 80%;
+    height:40px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: green;
+  }
+
+  button{
+    width: 33%;
+  }

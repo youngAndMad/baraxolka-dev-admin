@@ -1,0 +1,52 @@
+<div class="parent">
+    <form [formGroup]="form" novalidate (ngSubmit)="submit()" tabindex="-1" (change)="display">
+        <a id="b_name">
+            {{ boutique ? boutique.name: 'Empty block'}}
+        </a>
+        <div class="form-group">
+            <label for="name">Name</label><br>
+            <input type="text" class="border w-full py-2 px-4 mb-2" id="name" formControlName="name"
+                [(ngModel)]="boutique.name"><br>
+            <div *ngIf="form.controls['name'].touched && boutique.name.length < 1" class="errorMessage">
+                Name is required property
+            </div>
+        </div>
+        <div class=" form-group">
+            <label for="name">Address</label><br>
+            <input type="text" class="border w-full py-2 px-4 mb-2" formControlName="container"
+                [(ngModel)]="address.container">
+            <div *ngIf="form.controls['container'].touched && address.container.length < 1" class="errorMessage">
+                Container is required property
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="comment">Some comment</label><br>
+            <input type="text" id="comment" class="border w-full py-2 px-4 mb-2" formControlName="comment"
+                [(ngModel)]="boutique.comment">
+        </div>
+
+        <div class="form-group">
+            <label for="s">Categories</label>
+            <ng-multiselect-dropdown id="s" #multiSelect [settings]="dropdownSettings" [data]="categories"
+                (onFilterChange)="handleFilterChange(multiSelect)" [(ngModel)]="boutique.categories"
+                (onDropDownClose)="onDropDownClose(multiSelect)" formControlName="categories">
+            </ng-multiselect-dropdown>
+
+            <div *ngIf="form.controls['categories'].errors?.['required'] && form.controls['categories'].touched"
+                class="errorMessage">
+                Choose categories
+            </div>
+        </div>
+
+
+
+        <div id="btns">
+            <button class="btn btn-primary" (click)="closePopup()">Close</button>
+            <button class="btn btn-danger" (click)="deleteBoutiqueFromAddress()">Delete</button>
+            <button class="btn btn-success" type="submit" [disabled]="form.invalid">Edit</button>
+        </div>
+
+        <button (click)="addCategory(multiSelect)" id="addCategory" [hidden]="!adding">Add new Category</button>
+    </form>
+</div>

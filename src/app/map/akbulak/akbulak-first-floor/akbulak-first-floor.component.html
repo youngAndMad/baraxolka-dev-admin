@@ -1,0 +1,95 @@
+<input id="search" type="text" class="form-control" placeholder="Search..." [(ngModel)]="searchText"
+    (input)="handleChangeInput()" />
+<div id="border">
+    <div class="leftSide">
+        <div *ngFor="let node of leftNodes" [class]="node">
+            <div *ngFor="let address of getAddressList(node)">
+                <div #element class="simple_boutique" [id]="address.id" (click)="clickDiv(element,address)">
+                    <app-boutique [address]="address">
+                    </app-boutique>
+                    <div class="door_from_bottom" *ngIf="leftNodes.indexOf(node)%2===0"></div>
+                    <div class="door_from_top" *ngIf="leftNodes.indexOf(node)%2===1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="middleSide">
+        <div class="middle_up">
+            <div class="middle_up_left">
+                <div #element *ngFor="let address of getAddressList('middle_up_left')" class="middle_boutique"
+                    (click)="clickDiv(element,address)" [id]="address.id">
+                    <app-boutique [address]="address">
+                    </app-boutique>
+                </div>
+            </div>
+            <div class="gray_component">
+                <a> sssssssssssssssssssssssss </a>
+            </div>
+            <div class="middle_up_right">
+                <div #element class="middle_boutique" (click)="clickDiv(element,address)"
+                    *ngFor="let address of getAddressList('middle_up_right')" [id]="address.id">
+                    <app-boutique [address]="address">
+                    </app-boutique>
+                </div>
+            </div>
+        </div>
+        <div class="middle_bottom" style="margin-top: 32%">
+
+            <div style="display: flex;flex-direction: row;margin-left: -7%;">
+                <div class="middle_middle_left">
+                    <div *ngFor="let address of getAddressList('middle_middle_left')" #element
+                        (click)="clickDiv(element,address)" class="middle_boutique" [id]="address.id">
+                        <app-boutique [address]="address">
+                        </app-boutique>
+                    </div>
+                </div>
+                <div class="middle_middle_right">
+                    <div #element class="middle_boutique" *ngFor="let address of getAddressList('middle_middle_right')"
+                        (click)="clickDiv(element,address)" [id]="address.id">
+                        <app-boutique [address]="address">
+                        </app-boutique>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: flex;flex-direction: row;margin-left: -7%;margin-top: 34%;">
+                <div class="middle_bottom_left">
+                    <div #element *ngFor="let address of getAddressList('middle_bottom_left')"
+                        (click)="clickDiv(element,address)" class="simple_boutique" style="width: 100px;"
+                        [id]="address.id">
+                        <app-boutique [address]="address">
+                        </app-boutique>
+                    </div>
+                </div>
+                <div class="middle_bottom_middle">
+                    <div class="simple_boutique" #element *ngFor="let address of getAddressList('middle_bottom_middle')"
+                        (click)="clickDiv(element,address)" [id]="address.id">
+                        <app-boutique [address]="address">
+                        </app-boutique>
+                    </div>
+                </div>
+                <div class="middle_bottom_right" style="margin-left: 20%;">
+                    <div class="middle_boutique" #element *ngFor="let address of getAddressList('middle_bottom_right')"
+                        (click)="clickDiv(element,address)" [id]="address.id">
+                        <app-boutique [address]="address">
+                        </app-boutique>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rightSide">
+        <div *ngFor="let node of rightNodes" [class]="node">
+            <div #element *ngFor="let address of getAddressList(node)">
+                <div class="simple_boutique" (click)="clickDiv(element,address)" [id]="address.id">
+                    <app-boutique [address]="address">
+                    </app-boutique>
+                    <div class="door_from_bottom" *ngIf="rightNodes.indexOf(node)%2===0"></div>
+                    <div class="door_from_top" *ngIf="rightNodes.indexOf(node)%2===1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-edit-boutique *ngIf="isPopupOpen" [address]="selectedAddress" (closed)="closePopup()">
+</app-edit-boutique>

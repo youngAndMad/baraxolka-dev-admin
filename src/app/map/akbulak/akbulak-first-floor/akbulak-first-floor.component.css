@@ -1,0 +1,165 @@
+#search {
+    border: 1px solid rgb(100, 81, 81);
+    margin-bottom: -1.5%;
+    padding: 2px;
+    margin-left: 40%;
+    width: 21%;
+    opacity: 0.5;
+    text-align: center;
+    color: black;
+  }
+  
+  #border {
+    margin-left: 2.5%;
+    width: 96%;
+    height:950px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .leftSide,
+  .rightSide {
+    width: 34%;
+  }
+  
+  .middleSide{
+    margin-left: 5.5%;
+    margin-right: 5.5%;
+    width: 35%;
+  }
+  
+  
+  .left_2,
+  .left_4,
+  .left_6,
+  .left_8,
+  .right_8,
+  .right_2,
+  .right_4,
+  .right_6{
+    margin-top: 11.65%;
+  }
+  
+  .simple_boutique {
+    height: 80px;
+    width: 55px;
+    border: 0.1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .middle_boutique{
+    height:80px;
+    width: 80px;
+    border: 0.1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .middle_up {
+    height: 58%;
+    width: 82%;
+    margin-right: 15%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .left_1 , 
+  .left_2 , 
+  .left_3 , 
+  .left_4 , 
+  .left_5 , 
+  .left_6 , 
+  .left_7 , 
+  .left_8 , 
+  .right_1,  
+  .right_2,  
+  .right_3,  
+  .right_4,  
+  .right_5,  
+  .right_6,  
+  .right_7,  
+  .right_8,
+  .middle_middle_left,
+  .middle_middle_right,
+  .middle_bottom_left,
+  .middle_up_right,
+  .middle_up_left
+  .middle_bottom_middle,
+  .middle_bottom_right{
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .gray_component {
+    width: 40%;
+    background-color: rgb(164, 164, 164);
+    height: 100%;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  
+  .gray_component a{
+    opacity: 0;
+  }
+  
+  .middle_up_right,
+  .middle_up_left{
+    flex-direction: column;
+  }
+  
+  .middle_middle_left,
+  .middle_middle_right{
+    flex-direction: row;
+  }
+  
+  .middle_up_right{
+     margin-left: 0; 
+  }
+  
+  
+  .middle_middle_right{
+    margin-left: 30%;
+  }
+  
+  .middle_bottom_middle{
+    margin-left:20%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  
+  .middle_bottom{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+    margin-top: 35%;
+    margin-left: 6%;
+  }
+  .door_from_bottom , 
+  .door_from_top{
+    position: absolute;
+    width: 40%;
+    border: none;
+    height: 4px;
+    background-color: white;
+  } 
+  
+  .door_from_bottom{
+    margin-top: 150%;
+  }
+  .door_from_top{
+    margin-top:-150%;
+  }
+  
+  .door_from_left{}
+  .door_from_right{}
+  
