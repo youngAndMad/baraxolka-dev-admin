@@ -18,7 +18,7 @@ export class ApiService {
 
   getAllByDetails(floor: number, bazar: string): Observable<any> {
     return this.http.get(
-      `${this.BASE_URL}market/boutique-address/?bazar=Akbulak&floor=1&limit=214`
+      `http://86.107.198.215:80/api/v1/market/boutique-address/?bazar=Akbulak&floor=1&limit=214`
       ,{headers:{
         'Authorization':`Token 77cef3e345363121c43e2ed5374c3dae6b03a65e`
         }}
