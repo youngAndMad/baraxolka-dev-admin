@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable, of} from 'rxjs';
+import {API_URL} from "../config";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   constructor(private http: HttpClient) {}
-  private BASE_URL:string='http://86.107.198.215:80/api/v1/'
 
   addCategory(name: string): Observable<any> {
     return this.http.post(
@@ -17,13 +17,7 @@ export class ApiService {
   }
 
   getAllByDetails(floor: number, bazar: string): Observable<any> {
-    console.log('hello world')
-    return this.http.get(
-      `http://86.107.198.215:80/api/v1/market/boutique-address/?bazar=Akbulak&floor=1&limit=214`
-      ,{headers:{
-        'Authorization':`Token d12725d124e74447206634ca116120939c6dbe6c`
-        }}
-    );
+    return this.http.get(`${API_URL}market/boutique-address/?bazar=Sayakhat&floor=4&limit=27`);
   }
 
 

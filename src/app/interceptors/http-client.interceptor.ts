@@ -14,6 +14,11 @@ export class HttpClientInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler):
     Observable<HttpEvent<unknown>> {
-    return next.handle(request);
+    const modified = request.clone({
+      setHeaders: {
+        Authorization: `Token ${localStorage.getItem('token')}`
+      }
+    });
+    return next.handle(modified);
   }
 }
