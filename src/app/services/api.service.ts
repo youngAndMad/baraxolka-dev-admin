@@ -23,7 +23,7 @@ export class ApiService {
 
 
   getAllCategories(): Observable<any> {
-    return this.http.get(`${API_URL}market/categories`)
+    return this.http.get(`${API_URL}market/categories/`)
   }
 
   save(request: any , container:string , addressId:number): Observable<any> {
