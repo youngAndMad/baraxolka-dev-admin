@@ -14,11 +14,15 @@ export class HttpClientInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler):
     Observable<HttpEvent<unknown>> {
-    const modified = request.clone({
-      setHeaders: {
-        Authorization: `Token ${localStorage.getItem('token')}`
-      }
-    });
-    return next.handle(modified);
+    console.log(request)
+    if (!request.url.includes('auth-token')){
+      const modified = request.clone({
+        setHeaders: {
+          Authorization: `Token ${localStorage.getItem('token')}`
+        }
+      });
+      return next.handle(modified);
+    }
+    return next.handle(request);
   }
 }

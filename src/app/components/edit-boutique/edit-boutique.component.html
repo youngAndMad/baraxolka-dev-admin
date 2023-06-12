@@ -1,5 +1,5 @@
 <div class="parent">
-    <form [formGroup]="form" novalidate (ngSubmit)="submit()" tabindex="-1" (change)="display">
+    <form [formGroup]="form" novalidate (ngSubmit)="submit()" tabindex="-1">
         <a id="b_name">
             {{ boutique ? boutique.name: 'Empty block'}}
         </a>
@@ -7,7 +7,7 @@
             <label for="name">Name</label><br>
             <input type="text" class="border w-full py-2 px-4 mb-2" id="name" formControlName="name"
                 [(ngModel)]="boutique.name"><br>
-            <div *ngIf="form.controls['name'].touched && boutique.name.length < 1" class="errorMessage">
+            <div *ngIf="form.controls['name'].touched && boutique.name && boutique.name.length < 1" class="errorMessage">
                 Name is required property
             </div>
         </div>

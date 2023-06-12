@@ -8,7 +8,8 @@ import {AuthService} from "./services/auth.service";
 })
 export class AppComponent implements OnInit {
   title = 'baraxolka-admin';
-  constructor(private auth:AuthService) {
+  constructor(private auth:AuthService,
+    ) {
   }
 
   ngOnInit(): void {

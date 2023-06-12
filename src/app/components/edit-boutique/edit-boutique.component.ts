@@ -1,7 +1,7 @@
-import { ApiService } from 'src/app/services/api.service';
-import { Category } from '../../model/Category';
-import { Boutique } from '../../model/Boutique';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import {ApiService} from 'src/app/services/api.service';
+import {Category} from '../../model/Category';
+import {Boutique} from '../../model/Boutique';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -12,7 +12,7 @@ import {
   IDropdownSettings,
   MultiSelectComponent,
 } from 'ng-multiselect-dropdown';
-import { Address } from 'src/app/model/Address';
+import {Address} from 'src/app/model/Address';
 
 @Component({
   selector: 'app-edit-boutique',
@@ -35,19 +35,13 @@ export class EditBoutiqueComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.form = this.formBuilder.group({
-      name: new FormControl<string>('', Validators.required),
-      container: new FormControl<string>(this?.address?.container),
-      categories: new FormControl(
-        this.boutique.categories,
-        Validators.required
-      ),
-      comment: new FormControl<string>(this?.boutique?.comment),
+      name: new FormControl('', Validators.required),
+      container: new FormControl(''),
+      categories: new FormControl('', Validators.required),
+      comment: new FormControl(),
     });
   }
 
-  display() {
-    console.log(this.form);
-  }
 
   dropdownSettings: IDropdownSettings = {
     textField: 'name',
@@ -64,31 +58,39 @@ export class EditBoutiqueComponent implements OnInit {
   submit() {
     let request = {
       name: this.form.get('name')?.value as string,
-      container: this.form.get('container')?.value as string,
       comment: this.form.get('comment')?.value as string,
-      categories: (this.form.get('categories')?.value as Category[]).map(
-        (category) => category.name
-      ),
-      addressId: this.address.id,
+      categories: (this.form.get('categories')?.value as Category[]).map(c => c.id),
+      address: this.address.id,
     };
 
-    this.apiService.save(request).subscribe((response) => {
-      this.boutique = response;
-    });
+    console.log(request)
+
+    if (this.address.boutique) {
+      this.apiService.update(
+        this.boutique.id,
+        request ,
+        this.address.id ,
+        this.form.get('container')?.value
+      )
+        .subscribe(response => this.address.boutique = response)
+    } else {
+      this.apiService.save(
+        request,
+        this.form.get('container')?.value as string,
+        this.address.id
+      )
+        .subscribe((response) => {
+          this.boutique = response;
+        });
+    }
 
     this.closePopup();
     window.location.reload();
   }
 
   ngOnInit(): void {
-    this.apiService.getAllCategories().subscribe((response) => {
-      this.categories = response;
-    });
-    if (this.address.boutique){
-      this.boutique = this.address.boutique;
-    }else{
-      this.boutique = new Boutique();
-    }
+    this.updateCategories();
+    this.boutique = this.address.boutique ? this.address.boutique : new Boutique();
   }
 
   handleFilterChange(multiSelect: MultiSelectComponent) {
@@ -103,12 +105,20 @@ export class EditBoutiqueComponent implements OnInit {
     }
   }
 
+  updateCategories():void{
+    this.apiService.getAllCategories().subscribe((response) => {
+      this.categories = response;
+    });
+  }
 
   addCategory(multiSelect: MultiSelectComponent) {
     if (multiSelect.filter.text.toString() !== '') {
       this.apiService
         .addCategory(multiSelect.filter.text.toString().toUpperCase())
-        .subscribe((response) => (this.categories = response));
+        .subscribe((response) => {
+          console.log(response);
+          this.updateCategories()
+        });
     }
   }
 
@@ -116,6 +126,7 @@ export class EditBoutiqueComponent implements OnInit {
     multiSelect.filter.text = '';
     this.adding = false;
   }
+
   closePopup() {
     this.closed.emit();
   }

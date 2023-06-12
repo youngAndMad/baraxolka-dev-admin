@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {interval} from 'rxjs';
-import {PASSWORD, PHONE} from "../config";
+import {API_URL, PASSWORD, PHONE} from "../config";
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +20,9 @@ export class AuthService {
   }
 
   private refreshToken() {
-    this.http.post<any>('http://86.107.198.215:80/api/v1/auth-token/', {password:PASSWORD, phone: PHONE})
+    this.http.post<any>(`${API_URL}auth-token/`, {password:PASSWORD, phone: PHONE})
       .subscribe(response => {
+        console.log(response)
         this.updateToken(response.token)
       })
   }
